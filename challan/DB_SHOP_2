@@ -1,0 +1,37 @@
+
+CREATE TABLE challan_tbl( 
+challan_no INT NOT NULL AUTO_INCREMENT,
+DATE DATE NOT NULL,
+customer_id INT NOT NULL,
+BILL_ID INT ,
+foreign Key(customer_id) references  customers_tbl(customer_id),
+foreign Key(BILL_ID) references   bills_tbl(BILL_ID),
+PRIMARY KEY (challan_no)
+);
+
+
+CREATE TABLE challan_items_tbl(
+challan_items_id INT NOT NULL AUTO_INCREMENT, 
+challan_no INT NOT NULL ,
+quantity  INT NOT NULL ,
+RATE INT NOT NULL,
+DESCRIPTION VARCHAR(30),
+foreign Key(challan_no) references  challan_tbl(challan_no),
+PRIMARY KEY (challan_items_id) );
+
+
+CREATE TABLE challan_transport_tbl(
+challan_transport_id INT NOT NULL AUTO_INCREMENT, 
+DATE DATE NULL,
+LR VARCHAR(50) NULL, 
+transport_name VARCHAR(50)  NULL, 
+LR_LOC VARCHAR(50)  NULL, 
+transport_parcels  INT  NULL ,
+challan_no INT NOT NULL unique ,
+foreign Key(challan_no) references  challan_tbl(challan_no), 
+PRIMARY KEY (challan_transport_id) );
+
+
+ALTER TABLE bills_tbl ADD challanNo INT  NULL unique references  challan_tbl(challan_no) ;  
+
+

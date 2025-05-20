@@ -1,0 +1,24 @@
+<?php
+
+namespace WHATSAPPCLOUDAPI;
+
+
+class WhatsAppCloudClientConfig{
+
+
+    protected array $config;
+
+    public function __construct(?string $filename = null){
+        //readFile and set all below array
+        $config['from_phone_no_id']="115321454828526";
+        $config['access_token']="EAAQ6kxBNYfkBAGvkBAeYrJQO34EY96kVmZAPLRJTtqXc5zE7y3aUZCvnlV1yfWlmdv5AJrKZCWZAmcxUOZAZA80SDysUIV4BsqpqL9mBP5N7sDP2c4LZCRQehvo8oS17F1bOaUIqCkl4KlwxJITCz5dfgkUsPB3dn4sMp8d1vCUWi0yBqTsbwVU";
+        $config['graph_version']="v16.0";
+        $config['global_url']="";
+
+
+    }
+}
+
+
+
+?>

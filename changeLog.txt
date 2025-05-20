@@ -1,0 +1,14 @@
+1.************add triger before debits_tbl DELETE
+BEGIN 
+
+update fabric_merchants_tbl
+
+set  ADVANCE_CREDITS= ADVANCE_CREDITS-(OLD.AMOUNT) where FABRIC_MERCHANTS_ID=OLD.FABRIC_MERCHANTS_ID;
+
+
+END
+
+
+2.*******************add column archive_state in customer table
+
+
