@@ -1,5 +1,6 @@
 
 <?php
+//tango received
 include($_SERVER['DOCUMENT_ROOT']."/htaccess.php");
 	
 	include($_SERVER['DOCUMENT_ROOT']."/$omenNX/mysqlconnectdb.php");
