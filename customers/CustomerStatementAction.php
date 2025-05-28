@@ -268,7 +268,7 @@ function getStatementList($company_name,$from_date,$to_date,$legacy_v1_date,$dbh
 
 
 	$sqlquery="select SUM(B.TOTAL_AMOUNT) AS TOTALAMOUNT FROM bills_tbl B,  customers_tbl C 
-				WHERE B.customer_id=C.customer_id AND C.COMPANY_NAME='".$company_name."'  AND b.DATE<'".$from_date."' order by  b.BILL_ID desc";
+				WHERE B.customer_id=C.customer_id AND C.COMPANY_NAME='".$company_name."'  AND B.DATE<'".$from_date."' order by  B.BILL_ID desc";
     $show=mysqli_query($dbhandle,$sqlquery);
 	$row=mysqli_fetch_array($show);
 	$old_bill_amount=$row['TOTALAMOUNT'];
@@ -295,8 +295,8 @@ function getStatementList($company_name,$from_date,$to_date,$legacy_v1_date,$dbh
 		$sqlquerylegacy="select 
 			B.BILL_ID as 'BILL ID',
 			B.DATE as 'DATE',
-			(select GROUP_CONCAT(bi.quantity) from bill_items_tbl bi where bi.BILL_ID=b.BILL_ID) as 'ITEM_QUANTITY'  ,
-			(select GROUP_CONCAT(bi.rate) from bill_items_tbl bi where bi.BILL_ID=b.BILL_ID) as 'ITEM_RATE'  ,
+			(select GROUP_CONCAT(bi.quantity) from bill_items_tbl bi where bi.BILL_ID=B.BILL_ID) as 'ITEM_QUANTITY'  ,
+			(select GROUP_CONCAT(bi.rate) from bill_items_tbl bi where bi.BILL_ID=B.BILL_ID) as 'ITEM_RATE'  ,
 			(B.TOTAL_AMOUNT) AS 'BILL AMOUNT',
 			DATE_FORMAT(tr.DATE, '%d/%m/%Y') as t_date,		
 			tr.LR as LR,
@@ -315,7 +315,7 @@ function getStatementList($company_name,$from_date,$to_date,$legacy_v1_date,$dbh
 				B.BILL_ID=tr.BILL_ID AND
 				B.customer_id=C.customer_id AND
 				C.COMPANY_NAME='$company_name' AND
-				b.DATE>='$from_date' AND b.DATE<='$legacy_v1_date' 
+				B.DATE>='$from_date' AND B.DATE<='$legacy_v1_date' 
 	
 	
 			UNION ALL
@@ -340,8 +340,8 @@ function getStatementList($company_name,$from_date,$to_date,$legacy_v1_date,$dbh
 			customers_tbl Cr 
 	
 			WHERE
-			cr.customer_id=c.customer_id 
-			AND cr.COMPANY_NAME='$company_name' 
+			Cr.customer_id=c.customer_id 
+			AND Cr.COMPANY_NAME='$company_name' 
 			AND c.DATE>='$from_date' 
 			AND c.DATE<='$legacy_v1_date'
 		
@@ -352,8 +352,8 @@ function getStatementList($company_name,$from_date,$to_date,$legacy_v1_date,$dbh
 		$sqlqueryNew="select 
 		B.BILL_ID as 'BILL ID',
 		B.DATE as 'DATE',
-		(select GROUP_CONCAT(bi.quantity) from bill_items_tbl bi where bi.BILL_ID=b.BILL_ID) as 'ITEM_QUANTITY'  ,
-		(select GROUP_CONCAT(bi.rate) from bill_items_tbl bi where bi.BILL_ID=b.BILL_ID) as 'ITEM_RATE'  ,
+		(select GROUP_CONCAT(bi.quantity) from bill_items_tbl bi where bi.BILL_ID=B.BILL_ID) as 'ITEM_QUANTITY'  ,
+		(select GROUP_CONCAT(bi.rate) from bill_items_tbl bi where bi.BILL_ID=B.BILL_ID) as 'ITEM_RATE'  ,
 		(B.TOTAL_AMOUNT) AS 'BILL AMOUNT',
 		DATE_FORMAT(tr.DATE, '%d/%m/%Y') as t_date,		
 		tr.LR as LR,
@@ -375,7 +375,7 @@ function getStatementList($company_name,$from_date,$to_date,$legacy_v1_date,$dbh
 	
 		B.customer_id=C.customer_id AND
 		C.COMPANY_NAME='$company_name' AND
-		b.DATE>='$legacy_v1_date' AND b.DATE<='$to_date' 
+		B.DATE>='$legacy_v1_date' AND B.DATE<='$to_date' 
 	
 	
 		UNION ALL
@@ -399,7 +399,7 @@ function getStatementList($company_name,$from_date,$to_date,$legacy_v1_date,$dbh
 	
 	
 		FROM credits_tbl c,
-		customers_tbl Cr 
+		customers_tbl cr 
 	
 		WHERE
 		cr.customer_id=c.customer_id 
@@ -416,8 +416,8 @@ function getStatementList($company_name,$from_date,$to_date,$legacy_v1_date,$dbh
 		$sqlqueryNew="select 
 		B.BILL_ID as 'BILL ID',
 		B.DATE as 'DATE',
-		(select GROUP_CONCAT(bi.quantity) from bill_items_tbl bi where bi.BILL_ID=b.BILL_ID) as 'ITEM_QUANTITY'  ,
-		(select GROUP_CONCAT(bi.rate) from bill_items_tbl bi where bi.BILL_ID=b.BILL_ID) as 'ITEM_RATE'  ,
+		(select GROUP_CONCAT(bi.quantity) from bill_items_tbl bi where bi.BILL_ID=B.BILL_ID) as 'ITEM_QUANTITY'  ,
+		(select GROUP_CONCAT(bi.rate) from bill_items_tbl bi where bi.BILL_ID=B.BILL_ID) as 'ITEM_RATE'  ,
 		(B.TOTAL_AMOUNT) AS 'BILL AMOUNT',
 		DATE_FORMAT(tr.DATE, '%d/%m/%Y') as t_date,		
 		tr.LR as LR,
@@ -439,7 +439,7 @@ function getStatementList($company_name,$from_date,$to_date,$legacy_v1_date,$dbh
 	
 		B.customer_id=C.customer_id AND
 		C.COMPANY_NAME='$company_name' AND
-		b.DATE>='$from_date' AND b.DATE<='$to_date' 
+		B.DATE>='$from_date' AND B.DATE<='$to_date' 
 	
 	
 		UNION ALL
@@ -463,7 +463,7 @@ function getStatementList($company_name,$from_date,$to_date,$legacy_v1_date,$dbh
 	
 	
 		FROM credits_tbl c,
-		customers_tbl Cr 
+		customers_tbl cr 
 	
 		WHERE
 		cr.customer_id=c.customer_id 
@@ -478,8 +478,8 @@ function getStatementList($company_name,$from_date,$to_date,$legacy_v1_date,$dbh
 			$sqlquerylegacy="select 
 			B.BILL_ID as 'BILL ID',
 			B.DATE as 'DATE',
-			(select GROUP_CONCAT(bi.quantity) from bill_items_tbl bi where bi.BILL_ID=b.BILL_ID) as 'ITEM_QUANTITY'  ,
-			(select GROUP_CONCAT(bi.rate) from bill_items_tbl bi where bi.BILL_ID=b.BILL_ID) as 'ITEM_RATE'  ,
+			(select GROUP_CONCAT(bi.quantity) from bill_items_tbl bi where bi.BILL_ID=B.BILL_ID) as 'ITEM_QUANTITY'  ,
+			(select GROUP_CONCAT(bi.rate) from bill_items_tbl bi where bi.BILL_ID=B.BILL_ID) as 'ITEM_RATE'  ,
 			(B.TOTAL_AMOUNT) AS 'BILL AMOUNT',
 			DATE_FORMAT(tr.DATE, '%d/%m/%Y') as t_date,		
 			tr.LR as LR,
@@ -498,7 +498,7 @@ function getStatementList($company_name,$from_date,$to_date,$legacy_v1_date,$dbh
 				B.BILL_ID=tr.BILL_ID AND
 				B.customer_id=C.customer_id AND
 				C.COMPANY_NAME='$company_name' AND
-				b.DATE>='$from_date' AND b.DATE<='$to_date' 
+				B.DATE>='$from_date' AND B.DATE<='$to_date' 
 	
 	
 			UNION ALL
@@ -520,7 +520,7 @@ function getStatementList($company_name,$from_date,$to_date,$legacy_v1_date,$dbh
 	
 	
 			FROM credits_tbl c,
-			customers_tbl Cr 
+			customers_tbl cr 
 	
 			WHERE
 			cr.customer_id=c.customer_id 

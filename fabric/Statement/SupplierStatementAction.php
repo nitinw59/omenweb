@@ -15,7 +15,7 @@
 	$from_date=$_POST["from_date"];
 	$to_date=$_POST["to_date"];
 	  
-	$sqlquery="select ADVANCE_CREDITS FROM FABRIC_MERCHANTS_TBL C WHERE C.COMPANY_NAME='".$company_name."'  ";
+	$sqlquery="select ADVANCE_CREDITS FROM fabric_merchants_tbl C WHERE C.COMPANY_NAME='".$company_name."'  ";
     $show=mysqli_query($dbhandle,$sqlquery);
 	$row=mysqli_fetch_array($show);
 	$ADVANCE_CREDITS=0;
@@ -24,7 +24,7 @@
 	//echo $ADVANCE_CREDITS;
 	
 	
-	$sqlquery="select B.BILL_ID , B.AMOUNT as 'BILL AMOUNT' , b.payment_amount FROM MERCHANT_BILLS_TBL B,FABRIC_MERCHANTS_TBL C WHERE B.AMOUNT>B.payment_amount AND	B.FABRIC_MERCHANTS_ID=C.FABRIC_MERCHANTS_ID AND	C.COMPANY_NAME='$company_name' ORDER BY DATE ASC";	
+	$sqlquery="select B.BILL_ID , B.AMOUNT as 'BILL AMOUNT' , b.payment_amount FROM MERCHANT_BILLS_TBL B,fabric_merchants_tbl C WHERE B.AMOUNT>B.payment_amount AND	B.FABRIC_MERCHANTS_ID=C.FABRIC_MERCHANTS_ID AND	C.COMPANY_NAME='$company_name' ORDER BY DATE ASC";	
 	
 	
 	$show=mysqli_query($dbhandle,$sqlquery);
@@ -76,7 +76,7 @@
 			SUM(b.payment_amount) as 'total_payment'
 			FROM MERCHANT_BILLS_TBL B,
 			
-			FABRIC_MERCHANTS_TBL C 
+			fabric_merchants_tbl C 
 			
 			WHERE 
 			B.DATE<'$from_date' AND
@@ -110,7 +110,7 @@
 
 			FROM MERCHANT_BILLS_TBL B,
 			
-			FABRIC_MERCHANTS_TBL C 
+			fabric_merchants_tbl C 
 			
 			WHERE 
 
@@ -191,7 +191,7 @@
 
 			FROM MERCHANT_BILLS_TBL B,
 			
-			FABRIC_MERCHANTS_TBL C 
+			fabric_merchants_tbl C 
 			
 			WHERE 
 
@@ -240,7 +240,7 @@
 			
 			FROM DEBITS_TBL D,
 			
-			FABRIC_MERCHANTS_TBL C 
+			fabric_merchants_tbl C 
 			
 			WHERE 
 
@@ -272,7 +272,7 @@
 		
   }else if($action=="getSupplierCredits"){
 	$company_name=$_POST["company_name"];
-	$sqlquery="select ADVANCE_CREDITS FROM FABRIC_MERCHANTS_TBL C WHERE C.COMPANY_NAME='".$company_name."'  ";
+	$sqlquery="select ADVANCE_CREDITS FROM fabric_merchants_tbl C WHERE C.COMPANY_NAME='".$company_name."'  ";
     $show=mysqli_query($dbhandle,$sqlquery);
 	$row=mysqli_fetch_array($show);
 	$ADVANCE_CREDITS=0;

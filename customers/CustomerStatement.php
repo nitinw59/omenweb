@@ -79,7 +79,7 @@
                         url:"CustomerStatementAction.php",
                         data:"company_name="+company_name+"&from_date="+from_date+"&to_date="+to_date+"&action=listCustomerStatement",
                         success:function(data){
-						
+						alert(data);
 						$("#listBills").show();
 						
 						
