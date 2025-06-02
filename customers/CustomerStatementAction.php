@@ -1,8 +1,7 @@
 <?php
   
 	include($_SERVER['DOCUMENT_ROOT']."/htaccess.php");
-	require_once('../tcpdf_include.php');
-
+	require_once ('../tcpdf_include.php');
 	include($_SERVER['DOCUMENT_ROOT']."/$omenNX/var.php");
 	include($_SERVER['DOCUMENT_ROOT']."/$omenNX/mysqlconnectdb.php");
 
@@ -127,7 +126,8 @@ function generateStatementPDF($html,$dir,$from,$to,$company_name){
 
 
 	if(!file_exists($_SERVER['DOCUMENT_ROOT'].$dir)){
-		mkdir($_SERVER['DOCUMENT_ROOT'].$dir,777,true);
+		echo "direcory:".$_SERVER['DOCUMENT_ROOT']."/".$dir;
+		mkdir($_SERVER['DOCUMENT_ROOT']."/".$dir,755,true);
 	}
 
 
@@ -140,9 +140,9 @@ function generateStatementPDF($html,$dir,$from,$to,$company_name){
 	$pdf->AddPage('L',"A3");
 	$pdf->writeHTML($html, true, false, true, false, '');
 
-	$pdf->Output($filepath, 'F');
-
-	return $filepath; 
+	$pdf->Output("nitin.pdf", 'D');
+	
+	//echo json_encode(array("success"=> true, "filename"=>"nitin.pdf"));
 
 }
 

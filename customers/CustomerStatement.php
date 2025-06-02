@@ -151,7 +151,7 @@
 				
 				
 				$('#bills_tbl').on('click', '.downloadStatement', function(){
-				
+				alert ("clicked");
 					var company_name=$("#buyername").val();
 					var from_date=$("#from_date").val();
 					var to_date=$("#to_date").val();
@@ -160,8 +160,10 @@
           type:"post",
           url:"CustomerStatementAction.php",
           data:"company_name="+company_name+"&from_date="+from_date+"&to_date="+to_date+"&action=generateStatementPDF",
+          dataType: "json",
           success:function(data){
-            alert(data);
+              alert(data);
+              window.location.href = "/downloadPDF.php?file="+data.filename;
             
           }
 
@@ -180,7 +182,7 @@
         	
 				$('#bills_tbl').on('click', '.sendStatement', function(){
 				
-        alert(555);
+        
         var company_name=$("#buyername").val();
         var from_date=$("#from_date").val();
         var to_date=$("#to_date").val();
@@ -191,7 +193,7 @@
         data:"company_name="+company_name+"&from_date="+from_date+"&to_date="+to_date+"&action=sendStatementPDF",
         success:function(data){
           $("#log").html(data);
-          alert(data);
+          
         }
 
         });
@@ -490,7 +492,7 @@ tr:nth-child(even){background-color: #f2f2f2}
 	To Date: <input type="date" id="to_date" value="<?=$current_due_date?>">
 	
 	&nbsp&nbsp&nbsp<button id="showBills" class="showBills" >Show</button>
-	<p id="log">hello</p>
+	<p id="log"></p>
 	</div>
     <div class="listBills" id="listBills" style="display:none;">
 	
@@ -500,7 +502,7 @@ tr:nth-child(even){background-color: #f2f2f2}
 	</table>
 	
 	</div>	
-  <p id="log">hello</p>
+  <p id="log"></p>
 
 	
 	

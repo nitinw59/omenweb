@@ -35,7 +35,7 @@ $tcpdf_include_dirs = array(
 	'/usr/share/php-tcpdf/tcpdf.php',
 	'/var/www/tcpdf/tcpdf.php',
 	'/var/www/html/tcpdf/tcpdf.php',
-	'../tcpdf/tcpdf.php'
+	'../TCPDF/tcpdf.php'
 );
 
 foreach ($tcpdf_include_dirs as $tcpdf_include_path) {

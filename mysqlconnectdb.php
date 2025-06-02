@@ -1,8 +1,8 @@
 <?php
-$username = "u101648997_shopwebNX";
-$password = "UNR@home1015";
-$hostname = "www.darkcarbon.in";
-$dbname= "u101648997_shopwebNX";
+$username = "";
+$password = "";
+$hostname = "";
+$dbname= "";
 
 //connection to the database
 $dbhandle = mysqli_connect($hostname, $username, $password,$dbname) 

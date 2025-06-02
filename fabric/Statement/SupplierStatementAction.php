@@ -25,7 +25,7 @@
 	//echo $ADVANCE_CREDITS;
 	
 	
-	$sqlquery="select B.BILL_ID , B.AMOUNT as 'BILL AMOUNT' , b.payment_amount FROM MERCHANT_BILLS_TBL B,fabric_merchants_tbl C WHERE B.AMOUNT>B.payment_amount AND	B.FABRIC_MERCHANTS_ID=C.FABRIC_MERCHANTS_ID AND	C.COMPANY_NAME='$company_name' ORDER BY DATE ASC";	
+	$sqlquery="select B.BILL_ID , B.AMOUNT as 'BILL AMOUNT' , B.payment_amount FROM merchant_bills_tbl B,fabric_merchants_tbl C WHERE B.AMOUNT>B.payment_amount AND	B.FABRIC_MERCHANTS_ID=C.FABRIC_MERCHANTS_ID AND	C.COMPANY_NAME='$company_name' ORDER BY DATE ASC";	
 	
 	
 	$show=mysqli_query($dbhandle,$sqlquery);
@@ -74,8 +74,8 @@
 	$sqlquery="
 	select 
 			SUM(B.AMOUNT) as 'total_amount' ,
-			SUM(b.payment_amount) as 'total_payment'
-			FROM MERCHANT_BILLS_TBL B,
+			SUM(B.payment_amount) as 'total_payment'
+			FROM merchant_bills_tbl B,
 			
 			fabric_merchants_tbl C 
 			
@@ -109,7 +109,7 @@
 			payment_amount as 'PAYMENT AMOUNT',	
 			payment_description as 'PAYMENT DESCRIPTION'
 
-			FROM MERCHANT_BILLS_TBL B,
+			FROM merchant_bills_tbl B,
 			
 			fabric_merchants_tbl C 
 			
@@ -117,7 +117,7 @@
 
 			B.FABRIC_MERCHANTS_ID=C.FABRIC_MERCHANTS_ID AND
 			C.COMPANY_NAME='$company_name' AND
-			b.DATE>='$from_date' AND b.DATE<='$to_date' 
+			B.DATE>='$from_date' AND B.DATE<='$to_date' 
     
 			order by date asc";
 		
@@ -190,7 +190,7 @@
 			B.AMOUNT AS 'AMOUNT',
 			B.loc AS 'loc'
 
-			FROM MERCHANT_BILLS_TBL B,
+			FROM merchant_bills_tbl B,
 			
 			fabric_merchants_tbl C 
 			
@@ -237,7 +237,7 @@
 		
 	$sqlquery="select 
 			D.DATE as 'DATE',
-			d.AMOUNT AS 'AMOUNT'
+			D.AMOUNT AS 'AMOUNT'
 			
 			FROM DEBITS_TBL D,
 			
