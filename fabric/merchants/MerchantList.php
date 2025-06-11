@@ -26,7 +26,7 @@ include($_SERVER['DOCUMENT_ROOT']."/htaccess.php");
 
 <style>
 
-.updateCustomer {
+.updateSupplier {
   background: #3498db;
   background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
   background-image: -moz-linear-gradient(top, #3498db, #2980b9);
@@ -43,7 +43,7 @@ include($_SERVER['DOCUMENT_ROOT']."/htaccess.php");
   text-decoration: none;
 }
 
-.updateCustomer:hover {
+.updateSupplier:hover {
   background: #3cb0fd;
   background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
   background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
@@ -191,7 +191,7 @@ label.light {
 
 
 // Attempt select query execution
-$sql = "SELECT * FROM FABRIC_MERCHANTS_TBL ORDER BY FABRIC_MERCHANTS_ID DESC";
+$sql = "SELECT * FROM fabric_merchants_tbl ORDER BY FABRIC_MERCHANTS_ID DESC";
 
 if($result = mysqli_query($dbhandle,$sql)){
     
@@ -242,7 +242,7 @@ if($result = mysqli_query($dbhandle,$sql)){
                 echo "<td><center><label>" . $row['EMAIL'] . "</label></center></td>";
               
 				
-                echo "<td><center><label><button type='submit' class='updateCustomer'>Update</button></label></center></td>";
+                echo "<td><center><label><button type='submit' class='updateSupplier'>Update</button></label></center></td>";
 				
 
             echo "</tr>";

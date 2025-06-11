@@ -118,9 +118,8 @@
                             });
                    
                       $('#challan_tbl').on('click', '.printChallan', function(){
-                        
                         var challanNo=$(this).val();
-                        
+                        var filepath="";
                         $.ajax({
                               type:"post",
                               url:"generateChallanPDF.php",
@@ -129,12 +128,12 @@
                               success:function(data){
                                 
                               }
-                      
-                      
-                      
                       });
-                            
-                            printJS('/data/'+WEB_DIR+'/challan/pdf/'+challanNo+'.pdf');
+                            //alert('data/'+WEB_DIR+'/challan/pdf/'+challanNo+'.pdf');
+                            //var path='data/'+WEB_DIR+'/challan/pdf/'+challanNo+'.pdf';
+                            //window.open("https://www.darkcarbon.in/"+path,"_blank");
+
+                            printJS('data/'+WEB_DIR+'/challan/PDF/'+challanNo+'.pdf');
                       });
                             
                     

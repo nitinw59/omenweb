@@ -13,23 +13,20 @@ $challanNo=$_POST["challanNo"];
 
 
 
-generatePDF($challanNo,$dbhandle);
+generatePDF($challanNo,$dbhandle,$omenNX);
 
 
 
-function generatePDF(string $challanNo,mysqli $dbhandle): int{
-    if (!file_exists('path/to/directory')) {
-        mkdir('path/to/directory', 0777, true);
-    }
-   
-
+function generatePDF(string $challanNo,mysqli $dbhandle,string $omenNX): int{
+    
+    
 	$challanDetail=getchallanDetail($challanNo,$dbhandle);
 	$challanItems=getchallanItems($challanNo,$dbhandle);
 	$challanTransport=getchallanTransport($challanNo,$dbhandle);
 
-	$filepath=$_SERVER['DOCUMENT_ROOT'] ."data/omenwebnx/challan/PDF/$challanNo.pdf";
-    if(!file_exists($_SERVER['DOCUMENT_ROOT'] ."data/omenwebnx/challan/PDF"))
-        mkdir($_SERVER['DOCUMENT_ROOT'] ."data/omenwebnx/challan/PDF",777,true);
+	$filepath=$_SERVER['DOCUMENT_ROOT']."data/$omenNX/challan/PDF/$challanNo.pdf";
+    if(!file_exists($_SERVER['DOCUMENT_ROOT'] ."data/$omenNX/challan/PDF"))
+        mkdir($_SERVER['DOCUMENT_ROOT'] ."data/$omenNX/challan/PDF",755,true);
 
         $challanDetail["type"]="(Original copy)";
         $challanHtmlOG=generateHtmlData($challanDetail,$challanItems,$challanTransport);
@@ -45,7 +42,7 @@ function generatePDF(string $challanNo,mysqli $dbhandle): int{
 
         $pdf->AddPage();
 
-
+        
             // Set some content to print
 
             // Print text using writeHTMLCell()
@@ -56,7 +53,7 @@ function generatePDF(string $challanNo,mysqli $dbhandle): int{
         $pdf->writeHTML($challanHtmlCopy, true, false, true, false, '');
         
         $pdf->Output($filepath, 'F');
-   
+        ob_clean();
         return json_encode(1);
 
 }

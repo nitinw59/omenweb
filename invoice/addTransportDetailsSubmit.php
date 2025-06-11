@@ -51,12 +51,13 @@
 				$filename = $_FILES['img_file']['name'];
 				$filename = $_POST['challanNo'].".jpg";
 				if(!file_exists($_SERVER["DOCUMENT_ROOT"]."/data/$omenNX/invoice/LR/"))
-       				 mkdir($_SERVER["DOCUMENT_ROOT"]."/data/$omenNX/invoice/LR/",777,true);
+					mkdir($_SERVER["DOCUMENT_ROOT"]."/data/$omenNX/invoice/LR/",755,true);
 
 				$location = $_SERVER["DOCUMENT_ROOT"]."/data/$omenNX/invoice/LR/".$filename;
+				
 				$uploadOk = 1;
 				$imageFileType = pathinfo($location,PATHINFO_EXTENSION);
-
+					
 				$valid_extensions = array("jpg","jpeg","png");
 					if( !in_array(strtolower($imageFileType),$valid_extensions) ) {
 						$uploadOk = 0;
@@ -94,29 +95,4 @@
 	echo $status;
 	
 	}
-	
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-  
-  
 ?>

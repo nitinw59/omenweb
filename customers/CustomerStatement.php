@@ -151,19 +151,22 @@
 				
 				
 				$('#bills_tbl').on('click', '.downloadStatement', function(){
-				alert ("clicked");
 					var company_name=$("#buyername").val();
 					var from_date=$("#from_date").val();
 					var to_date=$("#to_date").val();
-					
           $.ajax({
           type:"post",
           url:"CustomerStatementAction.php",
           data:"company_name="+company_name+"&from_date="+from_date+"&to_date="+to_date+"&action=generateStatementPDF",
           dataType: "json",
           success:function(data){
-              alert(data);
-              window.location.href = "/downloadPDF.php?file="+data.filename;
+              
+              $path=(data.filename);
+              
+            
+              alert("https://www.darkcarbon.in/"+$path);
+              window.open("https://www.darkcarbon.in/"+$path,"_blank");
+				
             
           }
 

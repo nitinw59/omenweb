@@ -22,8 +22,7 @@
 <html>
    <head>
 
-    <link  rel="stylesheet" type="text/css" href="css/style.css" />
-
+    
   	<!-- You need to include the following JS file to render the chart.
   	When you make your own charts, make sure that the path to this JS file is correct.
   	Else, you will get JavaScript errors. -->
@@ -58,9 +57,9 @@
 
      	// Form the SQL query that returns the top 10 most populous countries
      	if($Qtype==$reporttype[0]){
-		$strQuery = "select C.COMPANY_NAME AS NAME , SUM(b.TOTAL_AMOUNT) AS AMOUNT from bills_tbl B, customers_tbl C WHERE  B.customer_id=C.customer_id AND B.DATE>='$from_date' AND B.DATE<='$to_date' GROUP BY C.customer_id order by AMOUNT desc";
+		$strQuery = "select C.COMPANY_NAME AS NAME , SUM(B.TOTAL_AMOUNT) AS AMOUNT from bills_tbl B, customers_tbl C WHERE  B.customer_id=C.customer_id AND B.DATE>='$from_date' AND B.DATE<='$to_date' GROUP BY C.customer_id order by AMOUNT desc";
 		}else if($Qtype==$reporttype[1]){
-		$strQuery = "SELECT sum(quantity) as AMOUNT , c.COMPANY_NAME AS NAME FROM bill_items_tbl bi , bills_tbl b, customers_tbl c where b.BILL_ID=bi.BILL_ID and b.customer_id=c.customer_id  AND B.DATE>='$from_date' AND B.DATE<='$to_date'  group by b.customer_id order by AMOUNT desc";
+		$strQuery = "SELECT sum(quantity) as AMOUNT , c.COMPANY_NAME AS NAME FROM bill_items_tbl bi , bills_tbl b, customers_tbl c where b.BILL_ID=bi.BILL_ID and b.customer_id=c.customer_id  AND b.DATE>='$from_date' AND b.DATE<='$to_date'  group by b.customer_id order by AMOUNT desc";
 		}
 		// Execute the query, or else return the error message.
      	$result = $dbhandle->query($strQuery) or exit("Error code ({$dbhandle->errno}): {$dbhandle->error}");

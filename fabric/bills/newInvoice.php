@@ -5,7 +5,7 @@
 	include($_SERVER['DOCUMENT_ROOT']."/$omenNX/var.php");
 	include($_SERVER['DOCUMENT_ROOT']."/$omenNX/mysqlconnectdb.php");
  
-	$sql = "SELECT COMPANY_NAME FROM FABRIC_MERCHANTS_TBL";
+	$sql = "SELECT COMPANY_NAME FROM fabric_merchants_tbl";
 	$customercompanynames = array();
 	if($result = mysqli_query($dbhandle,$sql) ){
 		$count=0;
@@ -20,7 +20,7 @@
 	}
 	
 
-  $sql = "SELECT JOBWORKER_ID,NAME FROM JOBWORKER_TBL";
+  $sql = "SELECT JOBWORKER_ID,NAME FROM jobworker_tbl";
 	$jobberNameList = array();
 	if($result = mysqli_query($dbhandle,$sql) ){
 		$count=0; 

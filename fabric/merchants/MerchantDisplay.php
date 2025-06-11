@@ -189,11 +189,8 @@ tr:nth-child(even){background-color: #f2f2f2}
 include($_SERVER['DOCUMENT_ROOT']."/$omenNX/index.php");
 
 
-$selected = mysqli_select_db($dbhandle,$dbname) 
-  or die(mysql_error());
-
 // Attempt select query execution
-$sql = "SELECT  *  FROM FABRIC_MERCHANTS_TBL where mobile='".$_GET["mobile"]."'";
+$sql = "SELECT  *  FROM fabric_merchants_tbl where mobile='".$_GET["mobile"]."'";
 
 if($result = mysqli_query($dbhandle,$sql) ){
 	if(mysqli_num_rows($result) > 0){

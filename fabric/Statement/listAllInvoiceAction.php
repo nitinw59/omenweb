@@ -10,7 +10,7 @@
 	$from_date=$_POST["from_date"];
 	$to_date=$_POST["to_date"];
 	  
-	$sql = "SELECT B.BILL_ID, DATE, COMPANY_NAME,AMOUNT, LOC   FROM MERCHANT_BILLS_TBL B,FABRIC_MERCHANTS_TBL C WHERE B.FABRIC_MERCHANTS_ID=C.FABRIC_MERCHANTS_ID AND b.DATE>='$from_date' AND b.DATE<='$to_date' ORDER BY b.DATE ASC,B.BILL_ID ASC ";
+	$sql = "SELECT B.BILL_ID, DATE, COMPANY_NAME,AMOUNT, LOC   FROM merchant_bills_tbl B,fabric_merchants_tbl C WHERE B.FABRIC_MERCHANTS_ID=C.FABRIC_MERCHANTS_ID AND B.DATE>='$from_date' AND B.DATE<='$to_date' ORDER BY B.DATE ASC,B.BILL_ID ASC ";
 	$show=mysqli_query($dbhandle,$sql);
 	
 	$bills_list;
@@ -34,7 +34,7 @@
   }else if($action=="deleteBill"){
 	 $bill_no=$_POST["bill_no"];
 	 
-	 $sqlquery="DELETE FROM MERCHANT_BILLS_TBL WHERE  BILL_ID=".$bill_no ;
+	 $sqlquery="DELETE FROM merchant_bills_tbl WHERE  BILL_ID=".$bill_no ;
      $show=mysqli_query($dbhandle,$sqlquery);
  
     echo $show;

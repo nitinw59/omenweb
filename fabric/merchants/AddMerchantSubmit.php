@@ -23,15 +23,8 @@ include($_SERVER['DOCUMENT_ROOT']."/htaccess.php");
 	$mobile=$_POST['mobile'];
 	$email=$_POST['email'];
 	
- 	$query_upload=" insert into FABRIC_MERCHANTS_TBL(FNAME,LNAME,COMPANY_NAME,EMAIL,MOBILE,ADDRESS,CITY,STATE,ZIP) VALUES('".$Fname."','".$Lname."','".$companyname."','".$email."',".$mobile.",'".$address."','".$city."','".$state."','".$zip."');";
+ 	$query_upload=" insert into fabric_merchants_tbl (FNAME,LNAME,COMPANY_NAME,EMAIL,MOBILE,ADDRESS,CITY,STATE,ZIP) VALUES('".$Fname."','".$Lname."','".$companyname."','".$email."',".$mobile.",'".$address."','".$city."','".$state."','".$zip."');";
 	echo $query_upload;
-	
-	
-	
-
-	$selected = mysqli_select_db($dbhandle,$dbname) 
-  or die("Could not select database1");
-
 	$status=mysqli_query($dbhandle,$query_upload) ; 
 	
 	

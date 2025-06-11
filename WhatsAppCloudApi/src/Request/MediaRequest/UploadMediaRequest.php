@@ -8,7 +8,7 @@ namespace WHATSAPPCLOUDAPI\Request\MediaRequest;
 use WHATSAPPCLOUDAPI\Request;
 
 
-final class UPloadMediaRequest extends Request{
+final class UploadMediaRequest extends Request{
 
 
 	private string $file_path;

@@ -5,10 +5,11 @@ $server_root="/omenwebNX";
 include($_SERVER['DOCUMENT_ROOT']."$server_root/mysqlconnectdb.php");
 include($_SERVER['DOCUMENT_ROOT']."$server_root/var.php");
 
-   
+  
   $action=$_POST["action"];
- 
+	
   if($action=="fetchcustomerdetail"){
+	
 	 $customercompanyname=$_POST["customercompanyname"];
 	 $sqlquery="Select * from customers_tbl where COMPANY_NAME='".$customercompanyname."'";
      $show=mysqli_query($dbhandle,$sqlquery);
@@ -36,7 +37,7 @@ include($_SERVER['DOCUMENT_ROOT']."$server_root/var.php");
     $brand=$_POST["brand"];
     $itemStyle=$_POST["itemStyle"];
     $size=$_POST["size"];
-    $sqlquery="Select * from GENERALIZED_ITEMS where BRAND='$brand' and ITEM_STYLE='$itemStyle' and  SIZE='$size'";
+    $sqlquery="Select * from generalized_items where BRAND='$brand' and ITEM_STYLE='$itemStyle' and  SIZE='$size'";
 	
 	
 	if($show=mysqli_query($dbhandle_stockmanager,$sqlquery)){
@@ -59,7 +60,7 @@ include($_SERVER['DOCUMENT_ROOT']."$server_root/var.php");
   }
   }else if($action=="getBrandList"){
     
-	$sql = "SELECT DISTINCT BRAND FROM GENERALIZED_ITEMS WHERE AVAIALABLE_QTY > 0 ";
+	$sql = "SELECT DISTINCT BRAND FROM generalized_items WHERE AVAIALABLE_QTY > 0 ";
 	$brands = array();
 	if($result = mysqli_query($dbhandle_stockmanager,$sql) ){
 		$count=0;
@@ -74,7 +75,7 @@ include($_SERVER['DOCUMENT_ROOT']."$server_root/var.php");
   
 	}else if($action=="getStyleList"){
 		$brand=$_POST["brand"];
-		$sql = "SELECT DISTINCT ITEM_STYLE FROM GENERALIZED_ITEMS WHERE AVAIALABLE_QTY > 0 and brand = '$brand'";
+		$sql = "SELECT DISTINCT ITEM_STYLE FROM generalized_items WHERE AVAIALABLE_QTY > 0 and brand = '$brand'";
 		$styles = array();
 		if($result = mysqli_query($dbhandle_stockmanager,$sql) ){
 			$count=0;
@@ -90,7 +91,7 @@ include($_SERVER['DOCUMENT_ROOT']."$server_root/var.php");
 	}else if($action=="getSizeList"){
 		$brand=$_POST["brand"];
 		$style=$_POST["style"];
-		$sql = "SELECT  SIZE  FROM GENERALIZED_ITEMS WHERE AVAIALABLE_QTY > 0 and brand = '$brand' and ITEM_STYLE = '$style'";
+		$sql = "SELECT  SIZE  FROM generalized_items WHERE AVAIALABLE_QTY > 0 and brand = '$brand' and ITEM_STYLE = '$style'";
 		$sizes = array();
 		if($result = mysqli_query($dbhandle_stockmanager,$sql) ){
 			$count=0;
@@ -110,7 +111,8 @@ include($_SERVER['DOCUMENT_ROOT']."$server_root/var.php");
 	$duedate=$_POST["duedate"];
 	
 	
-    $sqlquery="INSERT INTO BILLS_TBL (DATE,DUE_DATE,customer_id,total_amount,challanNo)VALUES ('".$billdate."','".$duedate."',".$customer_id.",0,$challanNo)";                                                           
+    $sqlquery="INSERT INTO bills_tbl (DATE,DUE_DATE,customer_id,TOTAL_AMOUNT,challanNo)VALUES ('".$billdate."','".$duedate."',".$customer_id.",0,$challanNo)";                                                           
+	
 	
 	$show=mysqli_query($dbhandle,$sqlquery);
 	
@@ -142,15 +144,14 @@ include($_SERVER['DOCUMENT_ROOT']."$server_root/var.php");
 	$i=0;
 	foreach($bill_items_array as $bill_items_row){
 		
-		$sqlquery="INSERT INTO BILL_ITEMS_TBL (BILL_ID,ITEMS_ID,QUANTITY,RATE,description) 
+		$sqlquery="INSERT INTO bill_items_tbl (BILL_ID,items_id,quantity,RATE,description) 
 					VALUES
 					($bill_id,
 					$bill_items_row[0],
 					$bill_items_row[2],
 					$bill_items_row[3],
 					'$bill_items_row[1]' )";
-					
-		$show=mysqli_query($dbhandle,$sqlquery);
+				$show=mysqli_query($dbhandle,$sqlquery);
 	
 	
 	}
@@ -159,7 +160,7 @@ include($_SERVER['DOCUMENT_ROOT']."$server_root/var.php");
   }else if($action=="searchBillId"){
 	$bill_id=$_POST["bill_id"];
 	
-	$sqlquery = "SELECT b.date,b.due_date,b.total_amount,c.fname,c.lname,c.company_name,c.mobile,c.gsttreatment,c.gstn,c.address,c.city,c.state,c.zip,c.mobile FROM bills_tbl b,customers_tbl c where b.customer_id=c.customer_id and bill_id='".$bill_id."' ORDER BY  bill_id DESC";
+	$sqlquery = "SELECT b.date,b.due_date,b.TOTAL_AMOUNT,c.fname,c.lname,c.company_name,c.mobile,c.gsttreatment,c.gstn,c.address,c.city,c.state,c.zip,c.mobile FROM bills_tbl b,customers_tbl c where b.customer_id=c.customer_id and bill_id='".$bill_id."' ORDER BY  bill_id DESC";
 	
 				
 	$show=mysqli_query($dbhandle,$sqlquery);
@@ -184,7 +185,7 @@ include($_SERVER['DOCUMENT_ROOT']."$server_root/var.php");
 	//	$TOTAL_AMOUNT=$row['total_amount'];
 	
 	$bill_items_list;
-	$sqlquery="select  i.items_id,bi.quantity,bi.rate,i.description,I.SIZE,I.TAX_RATE  from bill_items_tbl bi,items_tbl i where bi.bill_id=".$BILL_ID." and bi.items_id=i.items_id;";
+	$sqlquery="select  i.items_id,bi.quantity,bi.RATE,i.description,i.SIZE,i.TAX_RATE  from bill_items_tbl bi,items_tbl i where bi.bill_id=".$BILL_ID." and bi.items_id=i.items_id;";
  
 				
 	$show=mysqli_query($dbhandle,$sqlquery);

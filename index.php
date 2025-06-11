@@ -61,7 +61,8 @@
 					<li class="pushy-link"><a href="/<?=$omenNX?>/payments/debits/newDebits.php">New Debit </a></li>
 					
 					<li class="pushy-link"><a href="/<?=$omenNX?>/payments/credits/listCredits.php">List Credit </a></li>
-					<li class="pushy-link"><a href="/<?=$omenNX?>/payments/debits/listDebits.php">List Debits </a></li>
+					<li class="pushy-link"><a href="/<?=$omenNX?>/payments/debits/listAllDebits.php">LIST Debits </a></li>
+					<li class="pushy-link"><a href="/<?=$omenNX?>/payments/debits/listDebits.php">Debits LOGGER </a></li>
 					</ul>
             </li>
 			<li class="pushy-submenu">

@@ -92,7 +92,7 @@
 						$("#totalamountlabel").html("Total Payment: "+totalamount);
 						
 						var markup= "<tr><td></td><td></td><td></td><td ><center><button class='print'>Print</button></center></td></tr>"
-						$("#payments_tbl").append(markup);
+						//$("#payments_tbl").append(markup);
 										
                         }
                     });

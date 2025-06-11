@@ -1,8 +1,8 @@
 <?php
 
 namespace WHATSAPPCLOUDAPI;
-
-use WHATSAPPCLOUDAPI\Request\MediaRequest\UPloadMediaRequest;
+    
+use WHATSAPPCLOUDAPI\Request\MediaRequest\UploadMediaRequest;
 use WHATSAPPCLOUDAPI\Request\MediaRequest\DeleteMediaRequest;
 use WHATSAPPCLOUDAPI\Message\Template\Component;
 use WHATSAPPCLOUDAPI\Request\MessageRequest\TemplateMessageRequest;
@@ -31,7 +31,7 @@ $this->client= new Client($config['graph_version'],null);
 
 public function uploadMedia(string $filepath): Response{
 
-    $request= new UPloadMediaRequest($filepath,
+    $request= new UploadMediaRequest($filepath,
                                 $this->app->fromPhoneNumberId(),
                                 $this->app->accessToken(),
                                 60);

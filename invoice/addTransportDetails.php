@@ -127,6 +127,7 @@
 									contentType: false,
 									processData: false,
 									success:function(data){
+											
 											if(Number(data)==1){
 												
 												window.location.replace("verifyInvoice.php?bill_id="+$("#bill_id_drop").val());					

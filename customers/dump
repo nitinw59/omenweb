@@ -1,0 +1,13 @@
+sudo apachectl start
+Alias /phpmyadmin /opt/homebrew/share/phpmyadmin
+    <Directory /opt/homebrew/share/phpmyadmin/>
+        Options Indexes FollowSymLinks MultiViews
+        AllowOverride All
+        <IfModule mod_authz_core.c>
+            Require all granted
+        </IfModule>
+        <IfModule !mod_authz_core.c>
+            Order allow,deny
+            Allow from all
+        </IfModule>
+    </Directory>

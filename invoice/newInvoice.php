@@ -20,7 +20,7 @@
 
 
 
-	$sql = "SELECT DISTINCT BRAND from GENERALIZED_ITEMS WHERE AVAIALABLE_QTY > 0 ";
+	$sql = "SELECT DISTINCT BRAND from generalized_items WHERE AVAIALABLE_QTY > 0 ";
 	$generalizedItems = array();
 	if($result = mysqli_query($dbhandle_stockmanager,$sql) ){
 		$count=0;
@@ -167,13 +167,6 @@
 				});
 				
 				
-				
-		
-		
-		
-		
-		
-		
 		
 		$(".generateBill").click(function(){
 			var challanNo=$("#challanNo").html();
@@ -220,14 +213,14 @@
 							if(data>-1){
 											var bill_id=data;
 											
-
+											
 												$.ajax({
 													type:"post",
 													url:"newInvoiceAction.php",
 													data:"itemsrow="+JSON.stringify(items_array)+"&bill_id="+bill_id+"&action=insertBillItems",
 													success:function(data){
-														
-														//$("#totalamountlabel").html("₹"+data);
+														//alert(data);
+														$("#totalamountlabel").html("₹"+data);
 
 													window.open("showInvoicesecond.php?bill_id="+bill_id,"_blank");
 													window.location.replace("../challan/listChallan.php");					
@@ -406,9 +399,10 @@
                         url:"newInvoiceAction.php",
                         data:"customercompanyname="+customercompanyname+"&action=fetchcustomerdetail",
                         success:function(data){
-							
+							alert(data);
 
 							customerdetails = JSON.parse(data);
+							
 							$("#company_name").html(""+customerdetails["COMPANY_NAME"]);
 							$("#customername").html(""+customerdetails["FNAME"] +" "+ customerdetails["LNAME"]);
 							$("#address").html(""+customerdetails["ADDRESS"]);

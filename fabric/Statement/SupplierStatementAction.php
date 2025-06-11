@@ -239,7 +239,7 @@
 			D.DATE as 'DATE',
 			D.AMOUNT AS 'AMOUNT'
 			
-			FROM DEBITS_TBL D,
+			FROM debits_tbl D,
 			
 			fabric_merchants_tbl C 
 			

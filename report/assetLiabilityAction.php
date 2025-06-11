@@ -9,7 +9,7 @@
 	$debitorList;
 	$debitorListCount=0;
     
-    $sqlquery="select SUM(B.TOTAL_AMOUNT) AS TOTALAMOUNT,COMPANY_NAME FROM bills_tbl B, customers_tbl C WHERE B.customer_id=C.customer_id and c.archive_state=0 group by COMPANY_NAME;";
+    $sqlquery="select SUM(B.TOTAL_AMOUNT) AS TOTALAMOUNT,COMPANY_NAME FROM bills_tbl B, customers_tbl C WHERE B.customer_id=C.customer_id and C.archive_state=0 group by COMPANY_NAME;";
         $show=mysqli_query($dbhandle,$sqlquery);
         while($row=mysqli_fetch_array($show)){
                 $debitor["COMPANY_NAME"]=$row["COMPANY_NAME"];
@@ -38,7 +38,7 @@
     $creditorList;
     $creditorListCount=0;
       
-      $sqlquery="SELECT SUM(AMOUNT) as TOTALAMOUNT, m.COMPANY_NAME FROM merchant_bills_tbl MB , fabric_merchants_tbl M WHERE MB.FABRIC_MERCHANTS_ID=M.FABRIC_MERCHANTS_ID group by m.COMPANY_NAME;";
+      $sqlquery="SELECT SUM(AMOUNT) as TOTALAMOUNT, M.COMPANY_NAME FROM merchant_bills_tbl MB , fabric_merchants_tbl M WHERE MB.FABRIC_MERCHANTS_ID=M.FABRIC_MERCHANTS_ID group by M.COMPANY_NAME;";
           $show=mysqli_query($dbhandle,$sqlquery);
           while($row=mysqli_fetch_array($show)){
                   $creditor["COMPANY_NAME"]=$row["COMPANY_NAME"];

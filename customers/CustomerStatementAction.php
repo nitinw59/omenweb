@@ -44,7 +44,7 @@
 
 
 		$loc= generateStatementPDF($html,"data/$omenNX/statements/$company_name",$from,$to,$company_name);
-
+		echo $loc;
   }elseif($action="sendStatementPDF"){
 	
 		$company_name=$_POST["company_name"];
@@ -130,7 +130,7 @@ function generateStatementPDF($html,$dir,$from,$to,$company_name){
 		mkdir($_SERVER['DOCUMENT_ROOT']."/".$dir,755,true);
 	}
 
-
+	$relative_filepath=$dir."/$company_name"."_".date('d-m-Y',strtotime($from))."_".date('d-m-Y',strtotime($to))."_".date('H-i-s',time()).".pdf";
 	$filepath=$_SERVER['DOCUMENT_ROOT'].$dir."/$company_name"."_".date('d-m-Y',strtotime($from))."_".date('d-m-Y',strtotime($to))."_".date('H-i-s',time()).".pdf";
 	
 	
@@ -140,9 +140,9 @@ function generateStatementPDF($html,$dir,$from,$to,$company_name){
 	$pdf->AddPage('L',"A3");
 	$pdf->writeHTML($html, true, false, true, false, '');
 
-	$pdf->Output("nitin.pdf", 'D');
-	
-	//echo json_encode(array("success"=> true, "filename"=>"nitin.pdf"));
+	$pdf->Output($filepath, 'F');
+	ob_clean();
+	return json_encode(array("success"=> true, "filename"=>$relative_filepath));
 
 }
 

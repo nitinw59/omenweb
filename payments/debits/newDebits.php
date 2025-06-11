@@ -4,7 +4,7 @@
 	include($_SERVER['DOCUMENT_ROOT']."/$omenNX/var.php");
 	include($_SERVER['DOCUMENT_ROOT']."/$omenNX/mysqlconnectdb.php");
  
-	$sql = "SELECT COMPANY_NAME FROM FABRIC_MERCHANTS_TBL";
+	$sql = "SELECT COMPANY_NAME FROM fabric_merchants_tbl";
 	$customercompanynames = array();
 	if($result = mysqli_query($dbhandle,$sql) ){
 		$count=0;
@@ -118,14 +118,13 @@
                         url:"debitsAction.php",
                         data:"customer_id="+customerdetails["FABRIC_MERCHANTS_ID"]+"&date="+paymentdate+"&amount="+amount+"&remark="+remark+"&action=addDebits",
                         success:function(data){
-                       
-						var status = JSON.parse(data);
-						if(status["STATUS"]==1){
-							alert("Debit(s) Made Successfuly.\n Supplier="+customerdetails["COMPANY_NAME"]+"\ndate="+paymentdate+"\namount="+amount+"\nwords="+status["AmountInwords"]+"\nremark="+remark);
-							location.reload();
-						}else{
-							alert("Payment Failed.");
-						}
+                            var status = JSON.parse(data);
+						                if(status["STATUS"]==1){
+							              alert("Debit(s) Made Successfuly.\n Supplier="+customerdetails["COMPANY_NAME"]+"\ndate="+paymentdate+"\namount="+amount+"\nwords="+status["AmountInwords"]+"\nremark="+remark);
+							              location.reload();
+						            }else{
+						              	alert("Payment Failed.");
+					                	}
 										
                         }
                     });

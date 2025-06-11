@@ -48,11 +48,12 @@
                         url:"listInvoiceAction.php",
                         data:"action=listInvoice",
                         success:function(data){
-						
+                          console.log(data);
 						                    $("#listBills").show();
 						
 						
 					            	        var bills_list = JSON.parse(data);
+
 						                    var i=0;
 						                    $.each(bills_list, function( index, bill ) {
 							

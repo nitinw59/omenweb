@@ -22,7 +22,7 @@
 		
 	}
 
-	$sql = "SELECT BRAND,ITEM_STYLE,SIZE FROM GENERALIZED_ITEMS WHERE AVAIALABLE_QTY > 0 ";
+	$sql = "SELECT BRAND,ITEM_STYLE,SIZE FROM generalized_items WHERE AVAIALABLE_QTY > 0 ";
 	$generalizedItems = array();
 	if($result = mysqli_query($dbhandle_stockmanager,$sql) ){
 		$count=0;
@@ -188,6 +188,7 @@
                        						url:"updateInvoiceAction.php",
                         					data:"item_id="+item_id+"&bill_id="+$.getUrlVar('bill_id')+"&description="+description+"&quantity="+quantity+"&rate="+rate+"&action=addBillItem",
                         					success:function(data){
+												
 												try{
 													if(data>-1){
 														$("#totalquantitylabel").attr("value",(total_quantity+Number(quantity)));
@@ -579,7 +580,7 @@
 						bill_ITEMS_ID as ITEMS_ID,
 						QUANTITY,
 						RATE
-							FROM  bill_ITEMS_tbl 
+							FROM  bill_items_tbl 
 							where bill_id=".$_GET["bill_id"];
 				if($result = mysqli_query($dbhandle,$sql) ){
 				

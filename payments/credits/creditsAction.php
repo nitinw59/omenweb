@@ -34,7 +34,7 @@ include($_SERVER['DOCUMENT_ROOT']."/htaccess.php");
 	$from_date=$_POST["from_date"];
 	$to_date=$_POST["to_date"];
 	  
-	 $sqlquery="SELECT c.credits_id,c.date,c.amount,c.DESCRIPTION FROM credits_tbl c, customers_tbl Cr WHERE cr.customer_id=c.customer_id AND cr.COMPANY_NAME='".$company_name."' AND c.DATE>='".$from_date."' AND c.DATE<='".$to_date."' order by c.date";
+	 $sqlquery="SELECT c.credits_id,c.date,c.amount,c.DESCRIPTION FROM credits_tbl c, customers_tbl cr WHERE cr.customer_id=c.customer_id AND cr.COMPANY_NAME='".$company_name."' AND c.DATE>='".$from_date."' AND c.DATE<='".$to_date."' order by c.date";
     $show=mysqli_query($dbhandle,$sqlquery);
  
 	$payments_list;
@@ -65,7 +65,7 @@ include($_SERVER['DOCUMENT_ROOT']."/htaccess.php");
 	$from_date=$_POST["from_date"];
 	$to_date=$_POST["to_date"];
 	  
-	 $sqlquery="SELECT c.credits_id,c.date,c.amount,c.DESCRIPTION , (select company_name FROM CUSTOMERS_TBL CR WHERE CR.CUSTOMER_ID = C.CUSTOMER_ID) AS COMPANY_NAME FROM credits_tbl c WHERE  c.DATE>='".$from_date."' AND c.DATE<='".$to_date."' order by c.credits_id desc";
+	 $sqlquery="SELECT c.credits_id,c.date,c.amount,c.DESCRIPTION , (select company_name FROM customers_tbl cr WHERE cr.customer_id = c.customer_id) AS COMPANY_NAME FROM credits_tbl c WHERE  c.DATE>='".$from_date."' AND c.DATE<='".$to_date."' order by c.credits_id desc";
      $show=mysqli_query($dbhandle,$sqlquery);
  
 	$payments_list;

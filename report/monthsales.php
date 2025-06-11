@@ -123,8 +123,7 @@ include($_SERVER['DOCUMENT_ROOT']."/$omenNX/index.php");
 	
 	<?php
 			echo "<td><select id='Qtype' required>" ;
-			include($_SERVER['DOCUMENT_ROOT']."/omenweb/var.php");
-
+			
 			for($i=0;$i<count($reporttype);$i++){ 
 					echo "<option value='".$reporttype[$i]."'  selected >".$reporttype[$i]."</option>";
 					

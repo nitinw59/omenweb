@@ -1,62 +1,62 @@
 <?php
-  include($_SERVER['DOCUMENT_ROOT']."/omenwebNX/mysqlconnectdb.php");
+  include($_SERVER['DOCUMENT_ROOT']."/htaccess.php");
+	include($_SERVER['DOCUMENT_ROOT']."/$omenNX/var.php");
+	include($_SERVER['DOCUMENT_ROOT']."/$omenNX/mysqlconnectdb.php");
  
    
   //$action="listInvoice";
   $action=$_POST["action"];
- 
    if($action=="listInvoice"){
-	
 	$sqlqueryV1="select 
-	B.BILL_ID as 'BILL ID',
-	B.DATE as 'DATE',
-	  C.COMPANY_NAME,
+	b.BILL_ID as 'BILL ID',
+	b.DATE as 'DATE',
+	c.COMPANY_NAME,
 	(select GROUP_CONCAT(bi.quantity) from bill_items_tbl bi where bi.BILL_ID=b.BILL_ID) as 'ITEM_QUANTITY'  ,
 	(select GROUP_CONCAT(bi.rate) from bill_items_tbl bi where bi.BILL_ID=b.BILL_ID) as 'ITEM_RATE'  ,
-	(B.TOTAL_AMOUNT) AS 'BILL AMOUNT',
+	(b.TOTAL_AMOUNT) AS 'BILL AMOUNT',
 	DATE_FORMAT(tr.DATE, '%d/%m/%Y') as t_date,		
 	tr.LR as LR,
 	LR_LOC as LR_LOC,
 	tr.transport_name as transport_name,
 	tr.transport_parcels as transport_parcels
 	
-	FROM bills_tbl B,
+	FROM bills_tbl b,
 	transport_tbl tr,
 	
-	customers_tbl C 
+	customers_tbl c 
 	
 	WHERE 
 
 	
 
-	B.customer_id=C.customer_id 
+	b.customer_id=c.customer_id 
 	AND
 	b.BILL_ID=tr.BILL_ID
 	order by b.BILL_ID DESC;";
 	
 	$sqlqueryV2="select 
-	B.BILL_ID as 'BILL ID',
-	B.DATE as 'DATE',
-	  C.COMPANY_NAME,
+	b.BILL_ID as 'BILL ID',
+	b.DATE as 'DATE',
+	c.COMPANY_NAME,
 	(select GROUP_CONCAT(bi.quantity) from bill_items_tbl bi where bi.BILL_ID=b.BILL_ID) as 'ITEM_QUANTITY'  ,
 	(select GROUP_CONCAT(bi.rate) from bill_items_tbl bi where bi.BILL_ID=b.BILL_ID) as 'ITEM_RATE'  ,
-	(B.TOTAL_AMOUNT) AS 'BILL AMOUNT',
+	(b.TOTAL_AMOUNT) AS 'BILL AMOUNT',
 	DATE_FORMAT(tr.DATE, '%d/%m/%Y') as t_date,		
 	tr.LR as LR,
 	LR_LOC as LR_LOC,
 	tr.transport_name as transport_name,
 	tr.transport_parcels as transport_parcels
 	
-	FROM bills_tbl B,
+	FROM bills_tbl b,
 	challan_transport_tbl tr,
 	
-	customers_tbl C 
+	customers_tbl c 
 	
 	WHERE 
 
-	B.challanNo=tr.challan_no AND
+	b.challanNo=tr.challan_no AND
 
-	B.customer_id=C.customer_id 
+	b.customer_id=c.customer_id 
 	order by b.BILL_ID DESC";
 		
 		

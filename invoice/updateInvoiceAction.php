@@ -24,7 +24,7 @@
   	$item_id=$_POST["item_id"];
 	$bill_id=$_POST["bill_id"];
 	
-	$sqlquery="DELETE FROM BILL_ITEMS_TBL WHERE BILL_ID=".$bill_id." AND BILL_ITEMS_ID = ".$item_id;
+	$sqlquery="DELETE FROM bill_items_tbl WHERE BILL_ID=".$bill_id." AND BILL_ITEMS_ID = ".$item_id;
                                                            
 	
 	$show=mysqli_query($dbhandle,$sqlquery);
@@ -38,18 +38,8 @@
 	$description=$_POST["description"];
 	$QUANTITY=$_POST["quantity"];
 	$RATE=$_POST["rate"];
-	
-	
-	
-	
 	$sqlquery="INSERT INTO bill_items_tbl (BILL_ID,ITEMS_ID,QUANTITY,RATE,description) VALUE ($bill_id,$item_id,$QUANTITY,$RATE,'$description')";
     $show=mysqli_query($dbhandle,$sqlquery);
-	
-
-	$sqlquery="select * from bill_items_tbl order by desc";
-	$data=mysqli_query($dbhandle,$sqlquery);
-	while($row=mysqli_fetch_array($data))
-	$item_id=$row[''];
 	echo $show ; 
 	
 	
@@ -95,7 +85,7 @@
 	//	$TOTAL_AMOUNT=$row['total_amount'];
 	
 	$bill_items_list;
-	$sqlquery="select  i.items_id,bi.quantity,bi.rate,i.description,I.SIZE,I.TAX_RATE  from bill_items_tbl bi,items_tbl i where bi.bill_id=".$BILL_ID." and bi.items_id=i.items_id;";
+	$sqlquery="select  i.items_id,bi.quantity,bi.rate,i.description,i.SIZE,i.TAX_RATE  from bill_items_tbl bi,items_tbl i where bi.bill_id=".$BILL_ID." and bi.items_id=i.items_id;";
  
 				
 	$show=mysqli_query($dbhandle,$sqlquery);

@@ -10,7 +10,7 @@
 	
 	
 	
-	$sql = "SELECT COMPANY_NAME FROM FABRIC_MERCHANTS_TBL";
+	$sql = "SELECT COMPANY_NAME FROM fabric_merchants_tbl";
 	$customercompanynames = array();
 	if($result = mysqli_query($dbhandle,$sql) ){
 		$count=0;
@@ -80,9 +80,7 @@
 						$("#paymentdetail").show();
 						var payments_list = JSON.parse(data);
 						$.each(payments_list, function( index, payment ) {
-							var markup= "<tr><td><center>"+payment["BILL_ID"]+"</center></td><td ><center>"+payment["DEBIT_ID"]+"</center></td><td><center>"+payment["DATE"]+"</center></td><td><center>"+payment["AMOUNT"]+"</center></td><td><center>"+payment["AVAILABLE_CREDITS"]+"</center></td><td><center><button class='delete' value='"+payment["DEBIT_ID"]+"'>delete</button></center></td></tr>"
-							
-							
+							var markup= "<tr><td><center>"+payment["BILL_ID"]+"</center></td><td ><center>"+payment["DEBIT_ID"]+"</center></td><td><center>"+payment["DATE"]+"</center></td><td><center>"+payment["AMOUNT"]+"</center></td><td><center>"+payment["AVAILABLE_CREDITS"]+"</center></td></tr>"
 							$("#payments_tbl").append(markup);
 						});
 						var markup= "<tr><td></td><td></td><td></td><td ><center><button class='print'>Print</button></center></td></tr>"
@@ -181,13 +179,12 @@
 	?>
     
 	<div class="buyerdetailst" id="buyerdetailst">
-	<center><h3>List Debits</h3></center>
+	<center><h3>SUPPLIER CREDITS LOGGER</h3></center>
 	
 	<table>
 	<tr><td></td><td></td>
 	
 	<td>
-	<button id="showAllPayments">Show All Payments</button>
 	</td>
 	</tr>
 	
